@@ -47,7 +47,7 @@ export type RocketChatDesktopAPI = {
   ) => Promise<unknown>;
   destroyNotification: (id: unknown) => void;
   getInternalVideoChatWindowEnabled: () => boolean;
-  openInternalVideoChatWindow: (url: string, options: undefined) => void;
+  openInternalVideoChatWindow: (url: string, userId?: string) => void;
   setGitCommitHash: (gitCommitHash: string) => void;
   writeTextToClipboard: (text: string) => void;
 };

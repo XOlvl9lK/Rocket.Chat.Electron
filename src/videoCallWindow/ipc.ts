@@ -12,6 +12,7 @@ import {
 
 import { handle } from '../ipc/main';
 import { getRootWindow } from '../ui/main/rootWindow';
+import { setIsOnCall } from '../userPresence/setIsOnCall';
 
 export const handleDesktopCapturerGetSources = () => {
   handle('desktop-capturer-get-sources', async (_event, opts) =>
@@ -28,7 +29,7 @@ export const startVideoCallWindowHandler = (): void => {
     }
   );
 
-  handle('video-call-window/open-window', async (_event, url) => {
+  handle('video-call-window/open-window', async (_event, url, options) => {
     console.log('[Rocket.Chat Desktop] open-internal-video-chat-window', url);
     const validUrl = new URL(url);
     const allowedProtocols = ['http:', 'https:'];
@@ -59,6 +60,12 @@ export const startVideoCallWindowHandler = (): void => {
         (actualScreen.workArea.height - height) / 2 + actualScreen.workArea.y
       );
 
+      await setIsOnCall({
+        userId: options?.userId,
+        serverUrl: options?.serverUrl,
+        isOnCall: true
+      })
+
       const videoCallWindow = new BrowserWindow({
         width,
         height,
@@ -88,6 +95,13 @@ export const startVideoCallWindowHandler = (): void => {
         videoCallWindow.webContents.send('video-call-window/open-url', url);
         videoCallWindow.show();
       });
+      videoCallWindow.on('close', async () => {
+        await setIsOnCall({
+          userId: options?.userId,
+          serverUrl: options?.serverUrl,
+          isOnCall: false
+        })
+      })
 
       // videoCallWindow.webContents.openDevTools();
 

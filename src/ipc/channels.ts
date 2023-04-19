@@ -3,6 +3,7 @@ import { AnyAction } from 'redux';
 import { Download } from '../downloads/common';
 import { Server } from '../servers/common';
 import { SystemIdleState } from '../userPresence/common';
+import { OpenInternalVideoChatWindowProps } from '../servers/preload/internalVideoChatWindow';
 
 type ChannelToArgsMap = {
   'redux/get-initial-state': () => unknown;
@@ -22,7 +23,7 @@ type ChannelToArgsMap = {
   'certificatesManager/remove': (domain: string) => void;
   'server-view/get-url': () => Server['url'] | undefined;
   'server-view/ready': () => void;
-  'video-call-window/open-window': (url: string) => void;
+  'video-call-window/open-window': (url: string, options?: OpenInternalVideoChatWindowProps) => void;
   'video-call-window/open-url': (url: string) => void;
   'video-call-window/web-contents-id': (webContentsId: number) => void;
   'video-call-window/open-screen-picker': () => void;
