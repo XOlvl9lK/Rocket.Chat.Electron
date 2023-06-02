@@ -1,5 +1,6 @@
 import { Server } from '../servers/common';
 import { RootWindowIcon, WindowState } from './common';
+import { DownloadPathType } from './reducers/downloadPathSettings';
 
 export const ABOUT_DIALOG_DISMISSED = 'about-dialog/dismissed';
 export const ABOUT_DIALOG_TOGGLE_UPDATE_ON_START =
@@ -86,6 +87,9 @@ export const SETTINGS_CLEAR_PERMITTED_SCREEN_CAPTURE_PERMISSIONS =
 export const SET_HAS_TRAY_MINIMIZE_NOTIFICATION_SHOWN =
   'notifications/set-has-tray-minimize-notification-shown';
 export const VIDEO_CALL_WINDOW_OPEN_URL = 'video-call-window/open-url';
+export const SETTINGS_SHOW_DIRECTORY_PICKER = 'settings/show-directory-picker';
+export const DOWNLOAD_PATH_TYPE_CHANGED = 'settings/download-path-type-changed';
+export const DOWNLOAD_STATIC_PATH_CHANGED = 'settings/download-static-path-changed';
 
 export type UiActionTypeToPayloadMap = {
   [ABOUT_DIALOG_DISMISSED]: void;
@@ -163,4 +167,7 @@ export type UiActionTypeToPayloadMap = {
   [SETTINGS_CLEAR_PERMITTED_SCREEN_CAPTURE_PERMISSIONS]: void;
   [SET_HAS_TRAY_MINIMIZE_NOTIFICATION_SHOWN]: boolean;
   [VIDEO_CALL_WINDOW_OPEN_URL]: { url: string };
+  [DOWNLOAD_PATH_TYPE_CHANGED]: { downloadPathType?: DownloadPathType, downloadStaticPath?: string };
+  [SETTINGS_SHOW_DIRECTORY_PICKER]: void
+  [DOWNLOAD_STATIC_PATH_CHANGED]: { downloadPathType?: DownloadPathType, downloadStaticPath?: string }
 };

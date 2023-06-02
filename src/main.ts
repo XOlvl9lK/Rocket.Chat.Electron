@@ -32,7 +32,7 @@ import trayIcon from './ui/main/trayIcon';
 import { setupUpdates } from './updates/main';
 import { setupPowerMonitor } from './userPresence/main';
 import {
-  handleDesktopCapturerGetSources,
+  handleDesktopCapturerGetSources, incomingCallWindowHandler,
   startVideoCallWindowHandler,
 } from './videoCallWindow/ipc';
 
@@ -70,6 +70,7 @@ const start = async (): Promise<void> => {
   setupNotifications();
   setupScreenSharing();
   startVideoCallWindowHandler();
+  incomingCallWindowHandler();
 
   await setupSpellChecking();
 

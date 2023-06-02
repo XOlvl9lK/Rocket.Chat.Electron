@@ -11,6 +11,7 @@ import { SpellCheckingActionTypeToPayloadMap } from '../spellChecking/actions';
 import { UiActionTypeToPayloadMap } from '../ui/actions';
 import { UpdatesActionTypeToPayloadMap } from '../updates/actions';
 import { UserPresenceActionTypeToPayloadMap } from '../userPresence/actions';
+import { DownloadPathSettingsPayloadMap } from '../ui/reducers/downloadPathSettings';
 
 type ActionTypeToPayloadMap = AppActionTypeToPayloadMap &
   DeepLinksActionTypeToPayloadMap &
@@ -24,7 +25,8 @@ type ActionTypeToPayloadMap = AppActionTypeToPayloadMap &
   SpellCheckingActionTypeToPayloadMap &
   UiActionTypeToPayloadMap &
   UpdatesActionTypeToPayloadMap &
-  UserPresenceActionTypeToPayloadMap;
+  UserPresenceActionTypeToPayloadMap &
+  DownloadPathSettingsPayloadMap;
 
 type RootActions = {
   [Type in keyof ActionTypeToPayloadMap]: void extends ActionTypeToPayloadMap[Type]

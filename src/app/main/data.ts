@@ -8,6 +8,7 @@ import { normalizeNumber } from '../../ui/main/rootWindow';
 import { APP_SETTINGS_LOADED } from '../actions';
 import { selectPersistableValues } from '../selectors';
 import { getPersistedValues, persistValues } from './persistence';
+import { DOWNLOAD_STATIC_PATH_CHANGED } from '../../ui/actions';
 
 const loadUserDataOverriddenSettings = async (): Promise<
   Record<string, string>
@@ -98,6 +99,22 @@ export const mergePersistableValues = async (
       isTrayIconEnabled: localStorage.hideTray !== 'true',
     };
   }
+
+  if (!values.downloadPathSettings.downloadStaticPath) {
+    dispatch({
+      type: DOWNLOAD_STATIC_PATH_CHANGED,
+      // @ts-ignore
+      payload: { downloadStaticPath: app.getPath('downloads') },
+    });
+    values = {
+      ...values,
+      downloadPathSettings: {
+        ...values.downloadPathSettings,
+        downloadStaticPath: app.getPath('downloads')
+      }
+    };
+  }
+
   const userRootWindowState = await (async () => {
     try {
       const filePath = path.join(

@@ -3,6 +3,7 @@ import type { Certificate } from 'electron';
 import { Download } from '../downloads/common';
 import { Server } from '../servers/common';
 import { WindowState } from '../ui/common';
+import { DownloadPathType } from '../ui/reducers/downloadPathSettings';
 
 type PersistableValues_0_0_0 = {
   currentServerUrl: string;
@@ -60,9 +61,16 @@ type PersistableValues_3_8_12 = PersistableValues_3_8_9 & {
   hasHideOnTrayNotificationShown: boolean;
 };
 
+type PersistableValues_3_8_13 = PersistableValues_3_8_12 & {
+  downloadPathSettings: {
+    downloadPathType: DownloadPathType
+    downloadStaticPath: string
+  };
+};
+
 export type PersistableValues = Pick<
-  PersistableValues_3_8_12,
-  keyof PersistableValues_3_8_12
+  PersistableValues_3_8_13,
+  keyof PersistableValues_3_8_13
 >;
 
 export const migrations = {

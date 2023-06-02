@@ -10,6 +10,7 @@ import { MinimizeOnClose } from './features/MinimizeOnClose';
 import { ReportErrors } from './features/ReportErrors';
 import { SideBar } from './features/SideBar';
 import { TrayIcon } from './features/TrayIcon';
+import { DownloadPath } from './features/DownloadPath';
 
 export const GeneralTab: FC = () => (
   <Box is='form' margin={24} maxWidth={960} flexGrow={1} flexShrink={1}>
@@ -22,6 +23,7 @@ export const GeneralTab: FC = () => (
       {process.platform === 'win32' && <MinimizeOnClose />}
       <SideBar />
       {process.platform !== 'darwin' && <MenuBar />}
+      <DownloadPath />
       {!process.mas && <ClearPermittedScreenCaptureServers />}
     </FieldGroup>
   </Box>

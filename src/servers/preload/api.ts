@@ -16,6 +16,7 @@ import { setBackground } from './sidebar';
 import { setTitle } from './title';
 import { setUrlResolver } from './urls';
 import { setUserLoggedIn } from './userLoggedIn';
+import { openIncomingCallWindow } from './openIncomingCallWindow';
 
 type ServerInfo = {
   version: string;
@@ -48,6 +49,7 @@ export type RocketChatDesktopAPI = {
   destroyNotification: (id: unknown) => void;
   getInternalVideoChatWindowEnabled: () => boolean;
   openInternalVideoChatWindow: (url: string, userId?: string) => void;
+  openIncomingCallWindow: (url: string, png: string, userId?: string, callId?: string, rid?: string, sender?: string) => void;
   setGitCommitHash: (gitCommitHash: string) => void;
   writeTextToClipboard: (text: string) => void;
 };
@@ -74,6 +76,7 @@ export const RocketChatDesktop: RocketChatDesktopAPI = {
   destroyNotification,
   getInternalVideoChatWindowEnabled,
   openInternalVideoChatWindow,
+  openIncomingCallWindow,
   setGitCommitHash,
   writeTextToClipboard,
 };

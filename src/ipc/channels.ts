@@ -29,12 +29,14 @@ type ChannelToArgsMap = {
   'video-call-window/open-screen-picker': () => void;
   'video-call-window/screen-sharing-source-responded': (source: string) => void;
   'video-call-window/screen-recording-is-permission-granted': () => boolean;
+  'video-call/incoming': (url: string, options: { png?: string, serverUrl?: string, userId?: string, callId?: string, rid?: string, sender?: string }) => void
   'jitsi-desktop-capturer-get-sources': (
     options: Electron.SourcesOptions
   ) => Electron.DesktopCapturerSource[];
   'desktop-capturer-get-sources': (
     options: Electron.SourcesOptions
   ) => Electron.DesktopCapturerSource[];
+  'settings/show-directory-picker': () => void
 };
 
 export type Channel = keyof ChannelToArgsMap;

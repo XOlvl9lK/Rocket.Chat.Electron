@@ -37,6 +37,7 @@ import {
   skippedUpdateVersion,
   updateError,
 } from '../updates/reducers';
+import { downloadPathSettings } from '../ui/reducers/downloadPathSettings';
 
 export const rootReducer = combineReducers({
   allowedJitsiServers,
@@ -57,6 +58,7 @@ export const rootReducer = combineReducers({
   isMinimizeOnCloseEnabled,
   isUpdatingAllowed,
   isUpdatingEnabled,
+  downloadPathSettings,
   newUpdateVersion,
   openDialog,
   rootWindowIcon,

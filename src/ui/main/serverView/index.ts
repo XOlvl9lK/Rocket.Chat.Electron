@@ -33,14 +33,15 @@ import {
   LOADING_ERROR_VIEW_RELOAD_SERVER_CLICKED,
   SIDE_BAR_CONTEXT_MENU_TRIGGERED,
   SIDE_BAR_REMOVE_SERVER_CLICKED,
-  WEBVIEW_READY,
+  WEBVIEW_ATTACHED,
   WEBVIEW_DID_FAIL_LOAD,
   WEBVIEW_DID_NAVIGATE,
   WEBVIEW_DID_START_LOADING,
-  WEBVIEW_ATTACHED,
+  WEBVIEW_READY,
 } from '../../actions';
 import { getRootWindow } from '../rootWindow';
 import { createPopupMenuForServerView } from './popupMenu';
+import { DownloadPathType } from '../../reducers/downloadPathSettings';
 
 const t = i18next.t.bind(i18next);
 
@@ -318,9 +319,15 @@ export const attachGuestWebContentsEvents = async (): Promise<void> => {
     guestWebContents.session.on(
       'will-download',
       (event, item, _webContents) => {
-        const savePath = dialog.showSaveDialogSync(rootWindow, {
-          defaultPath: item.getFilename(),
-        });
+        const { downloadStaticPath, downloadPathType } = select(({ downloadPathSettings}) => downloadPathSettings)
+        let savePath
+        if (downloadPathType === DownloadPathType.STATIC && downloadStaticPath) {
+          savePath = path.join(downloadStaticPath, item.getFilename())
+        } else {
+          savePath = dialog.showSaveDialogSync(rootWindow, {
+            defaultPath: item.getFilename(),
+          });
+        }
         if (savePath !== undefined) {
           item.setSavePath(savePath);
           handleWillDownloadEvent(event, item, _webContents);
