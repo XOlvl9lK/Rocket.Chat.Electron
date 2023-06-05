@@ -1,0 +1,58 @@
+.incoming-call-wrap {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100%;
+}
+
+.incoming-call-header {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+}
+
+.incoming-call-buttons-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.incoming-call-button {
+    width: 120px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 0.25rem;
+    transition: .25s;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.incoming-call-button-apply {
+    background-color: #148660;
+}
+
+.incoming-call-button-apply:hover {
+    background-color: #106D4F;
+}
+
+.incoming-call-button-dismiss {
+    background-color: #EC0D2A;
+}
+
+.incoming-call-button-dismiss:hover {
+    background-color: #D40C26;
+}
+
+.incoming-call-avatar {
+    width: 180px;
+}
