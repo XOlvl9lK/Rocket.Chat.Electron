@@ -20,7 +20,7 @@ export const handleDesktopCapturerGetSources = () => {
   );
 };
 
-const openVideoCallWindow = async (url: string, options?: { userId?: string, serverUrl?: string }) => {
+const openVideoCallWindow = async (url: string, options?: { userId?: string, serverUrl?: string, callId?: string }) => {
   console.log('[Rocket.Chat Desktop] open-internal-video-chat-window', url);
   const validUrl = new URL(url);
   const allowedProtocols = ['http:', 'https:'];
@@ -54,7 +54,8 @@ const openVideoCallWindow = async (url: string, options?: { userId?: string, ser
     await setIsOnCall({
       userId: options?.userId,
       serverUrl: options?.serverUrl,
-      isOnCall: true
+      isOnCall: true,
+      callId: options?.callId
     })
 
     const videoCallWindow = new BrowserWindow({
@@ -90,7 +91,8 @@ const openVideoCallWindow = async (url: string, options?: { userId?: string, ser
       await setIsOnCall({
         userId: options?.userId,
         serverUrl: options?.serverUrl,
-        isOnCall: false
+        isOnCall: false,
+        callId: options?.callId
       })
     })
 
@@ -167,7 +169,6 @@ export const incomingCallWindowHandler = () => {
     );
 
     incomingCallWindow.once('ready-to-show', () => {
-      console.log('sender', sender)
       incomingCallWindow.webContents.send('video-call-incoming/avatar', png)
       incomingCallWindow.webContents.send('video-call-incoming/sender', sender)
       incomingCallWindow.show()
@@ -177,7 +178,7 @@ export const incomingCallWindowHandler = () => {
 
     ipcMain.once('video-call-incoming/apply-call', async () => {
       incomingCallWindow.close()
-      await openVideoCallWindow(url, { serverUrl, userId })
+      await openVideoCallWindow(url, { serverUrl, userId, callId })
     });
 
     ipcMain.once('video-call-incoming/dismiss-call', async () => {

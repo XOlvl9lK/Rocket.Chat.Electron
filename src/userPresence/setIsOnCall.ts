@@ -4,9 +4,10 @@ type SetIsOnCallProps = {
   serverUrl?: string
   userId?: string
   isOnCall: boolean
+  callId?: string
 }
 
-export const setIsOnCall = async ({ isOnCall, userId, serverUrl }: SetIsOnCallProps) => {
+export const setIsOnCall = async ({ isOnCall, userId, serverUrl, callId }: SetIsOnCallProps) => {
   if (userId && serverUrl) {
     await fetch(`${serverUrl}api/v1/users.setIsOnCall`, {
       headers: {
@@ -16,6 +17,7 @@ export const setIsOnCall = async ({ isOnCall, userId, serverUrl }: SetIsOnCallPr
       body: JSON.stringify({
         isOnCall,
         userId,
+        callId
       })
     })
   }

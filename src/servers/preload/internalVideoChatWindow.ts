@@ -12,14 +12,16 @@ export type OpenInternalVideoChatWindowProps = {
   onClose?: () => void;
   serverUrl?: string
   userId?: string
+  callId?: string
 };
 
 export const openInternalVideoChatWindow = (
   url: string,
-  userId?: string
+  userId?: string,
+  callId?: string
 ): void => {
   if (!process.mas && getInternalVideoChatWindowEnabled()) {
-    ipcRenderer.invoke('video-call-window/open-window', url, { serverUrl: getServerUrl(), userId });
+    ipcRenderer.invoke('video-call-window/open-window', url, { serverUrl: getServerUrl(), userId, callId });
   } else {
     const validUrl = new URL(url);
     const allowedProtocols = ['http:', 'https:'];
