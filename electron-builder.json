@@ -15,6 +15,8 @@
     ]
   },
   "mac": {
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist",
     "category": "public.app-category.productivity",
     "target": [
       "dmg",
@@ -179,7 +181,7 @@
   "publish": [
     {
       "provider": "github",
-      "owner": "RocketChat",
+      "owner": "XOlvl9lK",
       "repo": "Rocket.Chat.Electron",
       "vPrefixedTagName": false
     }

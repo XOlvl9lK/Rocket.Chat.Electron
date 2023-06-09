@@ -6562,6 +6562,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"electron-log@npm:^4.4.8":
+  version: 4.4.8
+  resolution: "electron-log@npm:4.4.8"
+  checksum: 5a7958f8fd9a5c95987e885ffe1c5b88be15bb41d348b65c92e2d8664519faddf17ce0208cd4e7027b0908f92fecedfbef246a45061f53e4a53b5d2201aafbd9
+  languageName: node
+  linkType: hard
+
 "electron-notarize@npm:^1.2.2":
   version: 1.2.2
   resolution: "electron-notarize@npm:1.2.2"
@@ -12880,6 +12887,7 @@ __metadata:
     electron-devtools-installer: ^3.2.0
     electron-dl: ^3.5.0
     electron-fetch: ^1.9.1
+    electron-log: ^4.4.8
     electron-notarize: ^1.2.2
     electron-store: ^8.1.0
     electron-updater: ^5.3.0
