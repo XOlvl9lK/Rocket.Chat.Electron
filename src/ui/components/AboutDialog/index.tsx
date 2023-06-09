@@ -69,9 +69,11 @@ export const AboutDialog: FC = () => {
 
   useEffect(() => {
     if (updateError) {
+      const errorMessage = t('dialog.about.errorWhenLookingForUpdates')+ JSON.stringify(updateError)
+
       setCheckingForUpdates([
         true,
-        t('dialog.about.errorWhenLookingForUpdates'),
+        errorMessage as any,
       ]);
 
       const messageTimer = setTimeout(() => {

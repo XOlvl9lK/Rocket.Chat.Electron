@@ -152,10 +152,10 @@ export const setupUpdates = async (): Promise<void> => {
         return true;
       },
     });
-    autoUpdater.updateConfigPath = path.join(
-      app.getAppPath(),
-      'dev-app-update.yml'
-    );
+    // autoUpdater.updateConfigPath = path.join(
+    //   app.getAppPath(),
+    //   'dev-app-update.yml'
+    // );
   }
 
   autoUpdater.autoDownload = false;
