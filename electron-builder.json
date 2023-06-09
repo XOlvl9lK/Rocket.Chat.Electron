@@ -95,7 +95,7 @@
     "icon": "build/icon.ico",
     "publisherName": "Rocket.Chat Technologies Corp.",
     "legalTrademarks": "",
-    "verifyUpdateCodeSignature": true,
+    "verifyUpdateCodeSignature": false,
     "requestedExecutionLevel": "asInvoker",
     "signAndEditExecutable": true,
     "signDlls": false,

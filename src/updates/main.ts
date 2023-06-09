@@ -238,8 +238,11 @@ export const setupUpdates = async (): Promise<void> => {
           browserWindow.removeAllListeners('close');
           browserWindow.destroy();
         });
-        nativeUpdater.checkForUpdates();
-        nativeUpdater.on('update-downloaded', nativeUpdateDownloadedCallback);
+        autoUpdater.removeListener(
+          'update-downloaded',
+          nativeUpdateDownloadedCallback
+        );
+        autoUpdater.quitAndInstall();
       });
     } catch (error) {
       error instanceof Error &&
